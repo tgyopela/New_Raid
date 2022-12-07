@@ -19,6 +19,7 @@ namespace Raid
     public partial class Form1 : Form
     {
         string filesPath;
+        string settingsFile;
         string logFile;
         string kicsi;
         string mBody = string.Empty;
@@ -47,7 +48,18 @@ namespace Raid
         {
             InitializeComponent();
         }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            filesPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+            settingsFile = filesPath + "\\Settings.json";
+            GepNev = System.Windows.Forms.SystemInformation.ComputerName;
+            this.Text = this.Text + ": " + GepNev+ "\n";
+        }
 
+        private void DataLoading()
+        {
+
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             if (rbDell.Checked) {_Dell(); }
@@ -68,5 +80,6 @@ namespace Raid
 
         }
 
+        
     }
 }
