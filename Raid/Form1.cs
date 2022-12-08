@@ -109,7 +109,17 @@ namespace Raid
             if (Settingsed.Torles == "igen") { chLgDel.Checked = true; }
             if (Settingsed.Raid == "Dell") { rbDell.Checked = true; }
             if (Settingsed.Raid == "Hp") { rbHp.Checked = true; }
+            if (Settingsed.DiskParty == "igen") { chDiskpart.Checked = true; }
         }
-        
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            _SettLoad();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

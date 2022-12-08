@@ -49,6 +49,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -127,6 +129,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnCancel);
+            this.groupBox2.Controls.Add(this.btnSave);
             this.groupBox2.Controls.Add(this.txtClient);
             this.groupBox2.Controls.Add(this.txtTo);
             this.groupBox2.Controls.Add(this.txtPDW);
@@ -142,7 +146,7 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(251, 44);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(569, 261);
+            this.groupBox2.Size = new System.Drawing.Size(549, 261);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = " Küldési beállítások ";
@@ -253,6 +257,26 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Mail küldő:";
             // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(393, 76);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(131, 46);
+            this.btnSave.TabIndex = 13;
+            this.btnSave.Text = "Mentes";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(393, 149);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(131, 47);
+            this.btnCancel.TabIndex = 14;
+            this.btnCancel.Text = "Mégsem";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -297,6 +321,8 @@
         private System.Windows.Forms.TextBox txtPDW;
         private System.Windows.Forms.TextBox txtTo;
         private System.Windows.Forms.TextBox txtClient;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnSave;
     }
 }
 
