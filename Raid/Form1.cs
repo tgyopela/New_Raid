@@ -94,15 +94,21 @@ namespace Raid
 
         private void _SettLoad()
         {
-            //if (File.Exists(settingFile))
-            //{
             Settings Settingsed = null;
-                using (StreamReader r = new StreamReader(settingsFile))
-                {
-                    json = r.ReadToEnd();
-                    Settingsed = JsonConvert.DeserializeObject<Settings>(json);
-                }
-            //}
+            using (StreamReader r = new StreamReader(settingsFile))
+            {
+                json = r.ReadToEnd();
+                Settingsed = JsonConvert.DeserializeObject<Settings>(json);
+            }
+            txtMailServer.Text = Settingsed.MailServer;
+            txtPort.Text = Settingsed.MPort;
+            txtSender.Text = Settingsed.MUID;
+            txtPDW.Text = Settingsed.MPDW;
+            txtTo.Text = Settingsed.MTo;
+            txtClient.Text = Settingsed.Ceg;
+            if (Settingsed.Torles == "igen") { chLgDel.Checked = true; }
+            if (Settingsed.Raid == "Dell") { rbDell.Checked = true; }
+            if (Settingsed.Raid == "Hp") { rbHp.Checked = true; }
         }
         
     }
