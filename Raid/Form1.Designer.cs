@@ -34,8 +34,10 @@
             this.rbDell = new System.Windows.Forms.RadioButton();
             this.chDiskpart = new System.Windows.Forms.CheckBox();
             this.lstLog = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.lsbSys = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.txtClient = new System.Windows.Forms.TextBox();
             this.txtTo = new System.Windows.Forms.TextBox();
             this.txtPDW = new System.Windows.Forms.TextBox();
@@ -49,8 +51,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -118,14 +118,14 @@
             this.lstLog.Size = new System.Drawing.Size(948, 100);
             this.lstLog.TabIndex = 3;
             // 
-            // listBox2
+            // lsbSys
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 16;
-            this.listBox2.Location = new System.Drawing.Point(86, 668);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(948, 100);
-            this.listBox2.TabIndex = 4;
+            this.lsbSys.FormattingEnabled = true;
+            this.lsbSys.ItemHeight = 16;
+            this.lsbSys.Location = new System.Drawing.Point(86, 668);
+            this.lsbSys.Name = "lsbSys";
+            this.lsbSys.Size = new System.Drawing.Size(948, 100);
+            this.lsbSys.TabIndex = 4;
             // 
             // groupBox2
             // 
@@ -151,6 +151,26 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = " Küldési beállítások ";
             this.groupBox2.MouseHover += new System.EventHandler(this.groupBox2_MouseHover);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(393, 149);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(131, 47);
+            this.btnCancel.TabIndex = 14;
+            this.btnCancel.Text = "Mégsem";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(393, 76);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(131, 46);
+            this.btnSave.TabIndex = 13;
+            this.btnSave.Text = "Mentes";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // txtClient
             // 
@@ -260,33 +280,13 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Mail küldő:";
             // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(393, 76);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(131, 46);
-            this.btnSave.TabIndex = 13;
-            this.btnSave.Text = "Mentes";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(393, 149);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(131, 47);
-            this.btnCancel.TabIndex = 14;
-            this.btnCancel.Text = "Mégsem";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1616, 1146);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.listBox2);
+            this.Controls.Add(this.lsbSys);
             this.Controls.Add(this.lstLog);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
@@ -308,7 +308,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox chDiskpart;
         private System.Windows.Forms.ListBox lstLog;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox lsbSys;
         private System.Windows.Forms.RadioButton rbHp;
         private System.Windows.Forms.RadioButton rbDell;
         private System.Windows.Forms.GroupBox groupBox2;

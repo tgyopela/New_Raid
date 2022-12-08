@@ -59,7 +59,6 @@ namespace Raid
             settingsFile = filesPath + "\\Settings.json";
             GepNev = System.Windows.Forms.SystemInformation.ComputerName;
             myIP = Dns.GetHostByName(GepNev).AddressList[0].ToString();
-            this.Text = this.Text + ": " + GepNev+ " || " + myIP + "\n" ;
             if (File.Exists(settingsFile))
             {
                 _SettLoad();
@@ -68,12 +67,33 @@ namespace Raid
             {
                
             }
+            logFile = logFile = @filesPath + "\\systeminfo.txt";
+            bool gyarto = false;
+                if (File.Exists(logFile))
+                {
+                    lsbSys.DataSource = File.ReadAllLines(logFile);
+                    //*
+                    for (int i = 0; i < lsbSys.Items.Count; ++i)
+                    {
+                        kicsi = lsbSys.Items[i].ToString();
+                        kicsi = kicsi.ToLower();
+                        if (kicsi.Contains("system manufacturer") == true)
+                        {
+                           gyarto= true;
+                            this.Text = this.Text + ": " + GepNev + " || " + myIP + " || " + lsbSys.Items[i].ToString() + "\n";
+                        }
+                    }
+                    if (gyarto == false) 
+                    {
+                       this.Text = this.Text + ": " + GepNev + " || " + myIP + "\n";
+                    }
+                }
+                else
+                {
+                    this.Text = this.Text + ": " + GepNev + " || " + myIP + "\n";
+                }
         }
 
-        private void DataLoading()
-        {
-
-        }
         private void button1_Click(object sender, EventArgs e)
         {
             if (rbDell.Checked) {_Dell(); }
