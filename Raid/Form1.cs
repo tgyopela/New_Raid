@@ -42,6 +42,8 @@ namespace Raid
             public string Raid { get; set; } //Raid típus
             public string DiskParty { get; set; } //Diskpart
             public string Torles { get; set; } //Log fájl törlés
+            public string IP { get; set; } //IP
+            public string GepNev { get; set; } //Gépnév
 
         }
         public Form1()
@@ -53,7 +55,17 @@ namespace Raid
             filesPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
             settingsFile = filesPath + "\\Settings.json";
             GepNev = System.Windows.Forms.SystemInformation.ComputerName;
-            this.Text = this.Text + ": " + GepNev+ "\n";
+            string myIP = Dns.GetHostByName(GepNev).AddressList[0].ToString();
+            this.Text = this.Text + ": " + GepNev+ " || " + myIP + "\n" ;
+            if (File.Exists(settingsFile))
+            {
+                _SettLoad();
+                //MessageBox.Show("Van konfig");
+            }
+            else
+            {
+               // MessageBox.Show("Nincs konfig");
+            }
         }
 
         private void DataLoading()
@@ -80,6 +92,18 @@ namespace Raid
 
         }
 
+        private void _SettLoad()
+        {
+            //if (File.Exists(settingFile))
+            //{
+            Settings Settingsed = null;
+                using (StreamReader r = new StreamReader(settingsFile))
+                {
+                    json = r.ReadToEnd();
+                    Settingsed = JsonConvert.DeserializeObject<Settings>(json);
+                }
+            //}
+        }
         
     }
 }
