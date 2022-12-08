@@ -30,6 +30,7 @@ namespace Raid
         string psAzon;
         string fileTorles;
         long mEret;
+        string myIP;
         public class Settings
         {//Beállítások
             public string MailServer { get; set; } 
@@ -55,7 +56,7 @@ namespace Raid
             filesPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
             settingsFile = filesPath + "\\Settings.json";
             GepNev = System.Windows.Forms.SystemInformation.ComputerName;
-            string myIP = Dns.GetHostByName(GepNev).AddressList[0].ToString();
+            myIP = Dns.GetHostByName(GepNev).AddressList[0].ToString();
             this.Text = this.Text + ": " + GepNev+ " || " + myIP + "\n" ;
             if (File.Exists(settingsFile))
             {
@@ -119,7 +120,42 @@ namespace Raid
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            Settings Adatok = new Settings();
+            Adatok.MailServer = txtMailServer.Text;
+            Adatok.MUID = txtSender.Text;
+            Adatok.MPDW = txtPDW.Text;
+            Adatok.MPort = txtPort.Text;
+            Adatok.MFrom = txtSender.Text;
+            Adatok.MTo = txtTo.Text;
+            Adatok.Ceg = txtClient.Text;
+            if (rbDell.Checked== true) { Adatok.Raid = "Dell"; }
+            if (rbHp.Checked == true) { Adatok.Raid = "Hp";  }
+            if (chDiskpart.Checked == true) { Adatok.DiskParty = "igen"; }
+            if (chLgDel.Checked== true) { Adatok.Torles = "igen"; }
+            Adatok.IP = myIP;
+            Adatok.GepNev = GepNev;
+            json = JsonConvert.SerializeObject(Adatok);
+            using (StreamWriter r = new StreamWriter(settingsFile))
+            {
+                r.Write(json);
+            }
+            json = null;
+            Adatok = null;
+        }
 
+        private void txtPDW_MouseHover(object sender, EventArgs e)
+        {
+            txtPDW.PasswordChar = '\0';
+        }
+
+        private void groupBox2_MouseHover(object sender, EventArgs e)
+        {
+            txtPDW.PasswordChar = '*';
+        }
+
+        private void Form1_MouseHover(object sender, EventArgs e)
+        {
+            txtPDW.PasswordChar = '*';
         }
     }
 }

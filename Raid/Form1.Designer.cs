@@ -150,6 +150,7 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = " Küldési beállítások ";
+            this.groupBox2.MouseHover += new System.EventHandler(this.groupBox2_MouseHover);
             // 
             // txtClient
             // 
@@ -169,8 +170,10 @@
             // 
             this.txtPDW.Location = new System.Drawing.Point(98, 140);
             this.txtPDW.Name = "txtPDW";
+            this.txtPDW.PasswordChar = '*';
             this.txtPDW.Size = new System.Drawing.Size(258, 22);
             this.txtPDW.TabIndex = 10;
+            this.txtPDW.MouseHover += new System.EventHandler(this.txtPDW_MouseHover);
             // 
             // txtSender
             // 
@@ -291,6 +294,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Raid";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.MouseHover += new System.EventHandler(this.Form1_MouseHover);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
