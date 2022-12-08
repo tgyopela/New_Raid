@@ -54,7 +54,7 @@ namespace Raid
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            lstLog.DataSource = null;
+            //lstLog.DataSource = null;
             filesPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
             settingsFile = filesPath + "\\Settings.json";
             GepNev = System.Windows.Forms.SystemInformation.ComputerName;
