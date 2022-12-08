@@ -33,7 +33,7 @@
             this.rbHp = new System.Windows.Forms.RadioButton();
             this.rbDell = new System.Windows.Forms.RadioButton();
             this.chDiskpart = new System.Windows.Forms.CheckBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lstLog = new System.Windows.Forms.ListBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtClient = new System.Windows.Forms.TextBox();
@@ -109,14 +109,14 @@
             this.chDiskpart.Text = " Windows (Diskpart) ";
             this.chDiskpart.UseVisualStyleBackColor = true;
             // 
-            // listBox1
+            // lstLog
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(12, 346);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(948, 100);
-            this.listBox1.TabIndex = 3;
+            this.lstLog.FormattingEnabled = true;
+            this.lstLog.ItemHeight = 16;
+            this.lstLog.Location = new System.Drawing.Point(12, 346);
+            this.lstLog.Name = "lstLog";
+            this.lstLog.Size = new System.Drawing.Size(948, 100);
+            this.lstLog.TabIndex = 3;
             // 
             // listBox2
             // 
@@ -287,7 +287,7 @@
             this.ClientSize = new System.Drawing.Size(1616, 1146);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.listBox2);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.lstLog);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
@@ -307,7 +307,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox chDiskpart;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lstLog;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.RadioButton rbHp;
         private System.Windows.Forms.RadioButton rbDell;

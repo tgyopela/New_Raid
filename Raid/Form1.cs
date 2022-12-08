@@ -13,6 +13,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
 using Newtonsoft.Json;
+//using static System.Net.WebRequestMethods;
 
 namespace Raid
 {
@@ -25,11 +26,11 @@ namespace Raid
         string mBody = string.Empty;
         string mSubject = string.Empty;
         string GepNev;
-        bool Megjelenit = false;
+        //bool Megjelenit = false;
         string json;
-        string psAzon;
-        string fileTorles;
-        long mEret;
+        //string psAzon;
+        //string fileTorles;
+        //long mEret;
         string myIP;
         public class Settings
         {//Beállítások
@@ -53,6 +54,7 @@ namespace Raid
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            lstLog.DataSource = null;
             filesPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
             settingsFile = filesPath + "\\Settings.json";
             GepNev = System.Windows.Forms.SystemInformation.ComputerName;
@@ -61,11 +63,10 @@ namespace Raid
             if (File.Exists(settingsFile))
             {
                 _SettLoad();
-                //MessageBox.Show("Van konfig");
             }
             else
             {
-               // MessageBox.Show("Nincs konfig");
+               
             }
         }
 
@@ -82,11 +83,15 @@ namespace Raid
 
         private void _Dell()
         {
-
+            logFile = @filesPath + "\\dell.txt";
+            if (File.Exists(logFile)) { lstLog.DataSource = File.ReadAllLines(logFile); }
+            
         }
         private void _HP()
         {
-
+            logFile = @filesPath + "\\hp.txt";
+            if (File.Exists(logFile)) { lstLog.DataSource = File.ReadAllLines(logFile); }
+            
         }
         private void _Diskpart()
         {
@@ -115,11 +120,13 @@ namespace Raid
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            lstLog.DataSource = null;
             _SettLoad();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            lstLog.DataSource = null;
             Settings Adatok = new Settings();
             Adatok.MailServer = txtMailServer.Text;
             Adatok.MUID = txtSender.Text;
