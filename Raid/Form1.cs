@@ -71,16 +71,18 @@ namespace Raid
             bool gyarto = false;
                 if (File.Exists(logFile))
                 {
-                    lsbSys.DataSource = File.ReadAllLines(logFile);
-                    //*
-                    for (int i = 0; i < lsbSys.Items.Count; ++i)
+                   ListBox TesztLST = new ListBox();
+                   this.Controls.Add(TesztLST);
+                   TesztLST.Visible = false;
+                   TesztLST.DataSource= File.ReadAllLines(logFile);
+                    for (int i = 0; i < TesztLST.Items.Count; ++i)
                     {
-                        kicsi = lsbSys.Items[i].ToString();
+                        kicsi = TesztLST.Items[i].ToString();
                         kicsi = kicsi.ToLower();
                         if (kicsi.Contains("system manufacturer") == true)
                         {
                            gyarto= true;
-                            this.Text = this.Text + ": " + GepNev + " || " + myIP + " || " + lsbSys.Items[i].ToString() + "\n";
+                            this.Text = this.Text + ": " + GepNev + " || " + myIP + " || " + TesztLST.Items[i].ToString() + "\n";
                         }
                     }
                     if (gyarto == false) 
