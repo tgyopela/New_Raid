@@ -105,7 +105,24 @@ namespace Raid
         private void _Dell()
         {
             logFile = @filesPath + "\\dell.txt";
-            if (File.Exists(logFile)) { lstLog.DataSource = File.ReadAllLines(logFile); }
+            if (File.Exists(logFile))
+            {
+                lstLog.DataSource = File.ReadAllLines(logFile);
+                //*
+                for (int i = 0; i < lstLog.Items.Count; ++i)
+                {
+                    kicsi = lstLog.Items[i].ToString();
+                    kicsi = kicsi.ToLower();
+                    if (kicsi.Contains("frgn") == true || kicsi.Contains("dgrd") == true || kicsi.Contains("ugood") == true || kicsi.Contains("rbld") == true)
+                    {
+                        if (kicsi.Contains("did") == true || kicsi.Contains("pdc") == true || kicsi.Contains("cac") == true || kicsi.Contains("dhs") == true)
+                        {
+                        }
+                        else { MessageBox.Show("Hiba"); }
+                    }
+                }
+                //*
+            }
             
         }
         private void _HP()
