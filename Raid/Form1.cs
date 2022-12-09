@@ -113,12 +113,16 @@ namespace Raid
                 {
                     kicsi = lstLog.Items[i].ToString();
                     kicsi = kicsi.ToLower();
-                    if (kicsi.Contains("frgn") == true || kicsi.Contains("dgrd") == true || kicsi.Contains("ugood") == true || kicsi.Contains("rbld") == true)
+                    if (kicsi.Contains("frgn") == true || kicsi.Contains("dgrd") == true || kicsi.Contains("ugood") == true || kicsi.Contains("rbld") == true || kicsi.Contains("ubad") == true || kicsi.Contains("msng") == true)
                     {
-                        if (kicsi.Contains("did") == true || kicsi.Contains("pdc") == true || kicsi.Contains("cac") == true || kicsi.Contains("dhs") == true)
+                        if (kicsi.Contains("did") == true || kicsi.Contains("pdc") == true || kicsi.Contains("cac") == true || kicsi.Contains("dhs") == true || kicsi.Contains("fspace") || kicsi.Contains("interface"))
                         {
                         }
-                        else { MessageBox.Show("Hiba"); }
+                        else
+                        {
+                            //MessageBox.Show("Hiba");
+                            MessageBox.Show(kicsi);
+                        }
                     }
                 }
                 //*
