@@ -26,7 +26,7 @@ namespace Raid
         string mBody = string.Empty;
         string mSubject = string.Empty;
         string GepNev;
-        //bool Megjelenit = false;
+        bool RaidError = false;
         string json;
         //string psAzon;
         //string fileTorles;
@@ -120,12 +120,14 @@ namespace Raid
                         }
                         else
                         {
-                            //MessageBox.Show("Hiba");
-                            MessageBox.Show(kicsi);
+                            RaidError = true;
+
+                            //MessageBox.Show(kicsi);
                         }
                     }
                 }
-                //*
+                if (RaidError == true)
+                { MessageBox.Show("Hiba"); }
             }
             
         }
