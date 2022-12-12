@@ -103,7 +103,6 @@ namespace Raid
         {
             if (rbDell.Checked) {_Dell(); }
             if (rbHp.Checked) {_HP(); }
-            if (chDiskpart.Checked) {_Diskpart(); }
         }
 
         private void _Dell()
@@ -135,18 +134,42 @@ namespace Raid
                 { 
                 }
             }
-            MailSender();
-            
+            if (chDiskpart.Checked) { _Diskpart(); }  else { MailSender(); }
         }
         private void _HP()
         {
             logFile = @filesPath + "\\hp.txt";
-            if (File.Exists(logFile)) { lstLog.DataSource = File.ReadAllLines(logFile); }
-            
+            if (File.Exists(logFile))
+            {
+                lstLog.DataSource = File.ReadAllLines(logFile);
+                //*
+                for (int i = 0; i < lstLog.Items.Count; ++i)
+                {
+                    kicsi = lstLog.Items[i].ToString();
+                    kicsi = kicsi.ToLower();
+                    if (kicsi.Contains("frgn") == true || kicsi.Contains("dgrd") == true || kicsi.Contains("ugood") == true || kicsi.Contains("rbld") == true || kicsi.Contains("ubad") == true || kicsi.Contains("msng") == true)
+                    {
+                        if (kicsi.Contains("did") == true || kicsi.Contains("pdc") == true || kicsi.Contains("cac") == true || kicsi.Contains("dhs") == true || kicsi.Contains("fspace") || kicsi.Contains("interface"))
+                        {
+                        }
+                        else
+                        {
+                            RaidError = true;
+                            mBody += "<font color = #97492A; size = 2px;> <ins> <strong> " + kicsi + "</strong> </ins> </font> <br> </br>";
+                        }
+                    }
+                }
+                if (RaidError == true)
+                {
+                }
+                //*
+
+            }
+            if (chDiskpart.Checked) { _Diskpart(); } else { MailSender(); }
         }
         private void _Diskpart()
         {
-
+            MailSender();
         }
 
         private void _SettLoad()
