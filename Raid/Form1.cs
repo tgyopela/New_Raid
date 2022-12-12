@@ -97,7 +97,6 @@ namespace Raid
                     this.Text = this.Text + ": " + GepNev + " || " + myIP + "\n";
                     mSubject = "Dátum:" + DateTime.Now + " || Gépnév: " + GepNev + " || IP: " + myIP;
                 }
-            //MessageBox.Show(mSubject);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -109,6 +108,8 @@ namespace Raid
 
         private void _Dell()
         {
+            mBody += "<font color = #97492A; size = 4px;> <ins> <strong> Állapot információk : "  + "</strong> </ins> </font> <br> </br>";
+            mBody += "";
             logFile = @filesPath + "\\dell.txt";
             if (File.Exists(logFile))
             {
@@ -126,14 +127,15 @@ namespace Raid
                         else
                         {
                             RaidError = true;
-
-                            //MessageBox.Show(kicsi);
+                            mBody += "<font color = #97492A; size = 2px;> <ins> <strong> " + kicsi  + "</strong> </ins> </font> <br> </br>";
                         }
                     }
                 }
                 if (RaidError == true)
-                { MessageBox.Show("Hiba"); }
+                { 
+                }
             }
+            MailSender();
             
         }
         private void _HP()
@@ -215,7 +217,52 @@ namespace Raid
         }
         private void MailSender()
         {
+            if (RaidError == true)
+            {
+                //****
+                Settings Settingsed = null;
+                using (StreamReader r = new StreamReader(settingsFile))
+                {
+                    json = r.ReadToEnd();
+                    Settingsed = JsonConvert.DeserializeObject<Settings>(json);
+                }
+                try
+                {
+                    SmtpClient mySmtpClient = new SmtpClient(Settingsed.MailServer);
+                    mySmtpClient.Port = Int32.Parse(Settingsed.MPort);
+                    // set smtp-client with basicAuthentication
+                    mySmtpClient.UseDefaultCredentials = false;
+                    System.Net.NetworkCredential basicAuthenticationInfo = new
+                    System.Net.NetworkCredential(Settingsed.MUID, Settingsed.MPDW);
+                    mySmtpClient.Credentials = basicAuthenticationInfo;
 
+                    // add from,to mailaddresses
+                    MailAddress from = new MailAddress(Settingsed.MFrom, "Jelentes");
+                    //MailAddress to = new MailAddress("gyongyosi.peter@digitalgroup.hu", "Jelentes");
+                    MailMessage myMail = new System.Net.Mail.MailMessage(Settingsed.MFrom, Settingsed.MTo);
+
+                    // add ReplyTo
+
+
+                    MailAddress replyTo = new MailAddress(Settingsed.MFrom);
+                    myMail.ReplyToList.Add(replyTo);
+                    // set subject and encoding
+                    myMail.Subject = mSubject;
+                    myMail.SubjectEncoding = System.Text.Encoding.UTF8;
+                    // set body-message and encoding
+                    myMail.Body = mBody;
+                    myMail.BodyEncoding = System.Text.Encoding.UTF8;
+                    // text or html
+                    myMail.IsBodyHtml = true;
+                    mySmtpClient.Send(myMail);
+                }
+                catch
+                {
+
+                }
+                //****
+            }
+            Application.Exit();
         }
     }
 }
