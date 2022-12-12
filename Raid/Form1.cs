@@ -23,7 +23,7 @@ namespace Raid
         string settingsFile;
         string logFile;
         string kicsi;
-        string mBody = string.Empty;
+        string mBody = string.Empty; //Üzenet törzs
         string mSubject = string.Empty;
         string GepNev;
         bool RaidError = false;
@@ -58,6 +58,7 @@ namespace Raid
             settingsFile = filesPath + "\\Settings.json";
             GepNev = System.Windows.Forms.SystemInformation.ComputerName;
             myIP = Dns.GetHostByName(GepNev).AddressList[0].ToString();
+            
             if (File.Exists(settingsFile))
             {
                 _SettLoad();
@@ -81,18 +82,22 @@ namespace Raid
                         if (kicsi.Contains("system manufacturer") == true)
                         {
                            gyarto= true;
-                            this.Text = this.Text + ": " + GepNev + " || " + myIP + " || " + TesztLST.Items[i].ToString() + "\n";
+                           this.Text = this.Text + ": " + GepNev + " || " + myIP + " || " + TesztLST.Items[i].ToString() + "\n";
+                           mSubject = "Dátum: " + DateTime.Now + " ||  Gépnév: " + GepNev + " || Gyártó: " + TesztLST.Items[i].ToString() + " || IP: " +myIP ;
                         }
                     }
                     if (gyarto == false) 
                     {
                        this.Text = this.Text + ": " + GepNev + " || " + myIP + "\n";
+                      mSubject = "Dátum:" + DateTime.Now + " || Gépnév: " + GepNev + " || IP: " + myIP;
                     }
                 }
                 else
                 {
                     this.Text = this.Text + ": " + GepNev + " || " + myIP + "\n";
+                    mSubject = "Dátum:" + DateTime.Now + " || Gépnév: " + GepNev + " || IP: " + myIP;
                 }
+            //MessageBox.Show(mSubject);
         }
 
         private void button1_Click(object sender, EventArgs e)
