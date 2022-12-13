@@ -85,7 +85,7 @@ namespace Raid
                         {
                            gyarto= true;
                            this.Text = this.Text + ": " + GepNev + " || " + myIP + " || " + TesztLST.Items[i].ToString() + "\n";
-                           mSubject = "Dátum: " + DateTime.Now + " ||  Gépnév: " + GepNev + " || Gyártó: " + TesztLST.Items[i].ToString() + " || IP: " +myIP ;
+                           mSubject = "Cég: "+ txtClient.Text + " || Dátum: " + DateTime.Now + " ||  Gépnév: " + GepNev + " || Gyártó: " + TesztLST.Items[i].ToString() + " || IP: " +myIP ;
                            Gyarto = TesztLST.Items[i].ToString();
 
                         }
@@ -101,7 +101,7 @@ namespace Raid
                     if (gyarto == false) 
                     {
                        this.Text = this.Text + ": " + GepNev + " || " + myIP + "\n";
-                       mSubject = "Dátum:" + DateTime.Now + " || Gépnév: " + GepNev + " || IP: " + myIP;
+                       mSubject = "Cég: " + txtClient.Text + "Dátum:" + DateTime.Now + " || Gépnév: " + GepNev + " || IP: " + myIP;
                     Gyarto = "Nem azonosítható...";
                     }
                 }
