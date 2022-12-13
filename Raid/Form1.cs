@@ -58,7 +58,9 @@ namespace Raid
             settingsFile = filesPath + "\\Settings.json";
             GepNev = System.Windows.Forms.SystemInformation.ComputerName;
             myIP = Dns.GetHostByName(GepNev).AddressList[0].ToString();
-            
+            string Gyarto = null;
+            string PhyMem = null;
+            string AvaMem = null;
             if (File.Exists(settingsFile))
             {
                 _SettLoad();
@@ -79,17 +81,28 @@ namespace Raid
                     {
                         kicsi = TesztLST.Items[i].ToString();
                         kicsi = kicsi.ToLower();
-                        if (kicsi.Contains("system manufacturer") == true)
+                        if (kicsi.Contains("system manufacturer") == true) // || kicsi.Contains("total physical memory") == true || kicsi.Contains("available physical memory") == true)
                         {
                            gyarto= true;
                            this.Text = this.Text + ": " + GepNev + " || " + myIP + " || " + TesztLST.Items[i].ToString() + "\n";
                            mSubject = "Dátum: " + DateTime.Now + " ||  Gépnév: " + GepNev + " || Gyártó: " + TesztLST.Items[i].ToString() + " || IP: " +myIP ;
+                           Gyarto = TesztLST.Items[i].ToString();
+
                         }
-                    }
+                        if (kicsi.Contains("total physical memory") == true)
+                        {
+                           PhyMem = TesztLST.Items[i].ToString();
+                        }
+                        if (kicsi.Contains("available physical memory") == true)
+                        {
+                           AvaMem = TesztLST.Items[i].ToString();
+                        }
+                }
                     if (gyarto == false) 
                     {
                        this.Text = this.Text + ": " + GepNev + " || " + myIP + "\n";
-                      mSubject = "Dátum:" + DateTime.Now + " || Gépnév: " + GepNev + " || IP: " + myIP;
+                       mSubject = "Dátum:" + DateTime.Now + " || Gépnév: " + GepNev + " || IP: " + myIP;
+                    Gyarto = "Nem azonosítható...";
                     }
                 }
                 else
@@ -97,6 +110,14 @@ namespace Raid
                     this.Text = this.Text + ": " + GepNev + " || " + myIP + "\n";
                     mSubject = "Dátum:" + DateTime.Now + " || Gépnév: " + GepNev + " || IP: " + myIP;
                 }
+            mBody += "<font color = #97492A; size = 4px;> <ins> <strong> Alap információk : " + "</strong> </ins> </font> <br> </br>";
+            mBody += "";
+            mBody += "<font color = #97492A; size = 2px;> <ins> <strong> Gép név: " + GepNev + "</strong> </ins> </font> <br> </br>";
+            mBody += "<font color = #97492A; size = 2px;> <ins> <strong> Gyártó: " + Gyarto + "</strong> </ins> </font> <br> </br>";
+            mBody += "<font color = #97492A; size = 2px;> <ins> <strong> Fizikai memória: " + PhyMem + "</strong> </ins> </font> <br> </br>";
+            mBody += "<font color = #97492A; size = 2px;> <ins> <strong> Elérhető memória: " + AvaMem + "</strong> </ins> </font> <br> </br>";
+            mBody += "<font color = #97492A; size = 2px;> <ins> <strong> IP: " + myIP + "</strong> </ins> </font> <br> </br>";
+            mBody += "";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -107,13 +128,14 @@ namespace Raid
 
         private void _Dell()
         {
-            mBody += "<font color = #97492A; size = 4px;> <ins> <strong> Állapot információk : "  + "</strong> </ins> </font> <br> </br>";
+            mBody += "<font color = #97492A; size = 4px;> <ins> <strong> Raid állapot információk : "  + "</strong> </ins> </font> <br> </br>";
             mBody += "";
             logFile = @filesPath + "\\dell.txt";
             if (File.Exists(logFile))
             {
+                mBody += "<font color = #97492A; size = 3px;> <ins> <strong> " + "Dell Raid" + "</strong> </ins> </font> <br> </br>";
+                mBody += "";
                 lstLog.DataSource = File.ReadAllLines(logFile);
-                //*
                 for (int i = 0; i < lstLog.Items.Count; ++i)
                 {
                     kicsi = lstLog.Items[i].ToString();
@@ -129,20 +151,24 @@ namespace Raid
                             mBody += "<font color = #97492A; size = 2px;> <ins> <strong> " + kicsi  + "</strong> </ins> </font> <br> </br>";
                         }
                     }
-                }
+                }/*
                 if (RaidError == true)
                 { 
-                }
+                }*/
+                mBody += "";
             }
             if (chDiskpart.Checked) { _Diskpart(); }  else { MailSender(); }
         }
         private void _HP()
         {
+            mBody += "<font color = #97492A; size = 4px;> <ins> <strong>Raid állapot információk : " + "</strong> </ins> </font> <br> </br>";
+            mBody += "";
             logFile = @filesPath + "\\hp.txt";
             if (File.Exists(logFile))
             {
+                mBody += "<font color = #97492A; size = 3px;> <ins> <strong> " + "HP Raid" + "</strong> </ins> </font> <br> </br>";
+                mBody += "";
                 lstLog.DataSource = File.ReadAllLines(logFile);
-                MessageBox.Show("HP");
                 //*
                 for (int i = 0; i < lstLog.Items.Count; ++i)
                 {
@@ -153,16 +179,34 @@ namespace Raid
                         RaidError = true;
                         mBody += "<font color = #97492A; size = 2px;> <ins> <strong> " + kicsi + "</strong> </ins> </font> <br> </br>";
                     }
-                }
+                }/*
                 if (RaidError == true)
                 {
-                }
+                }*/
+                mBody += "";
             }
             if (chDiskpart.Checked) { _Diskpart(); } else { MailSender(); }
         }
         private void _Diskpart()
         {
-            MailSender();
+            mBody += "<font color = #97492A; size = 3px;> <ins> <strong> " + "Diskpart Raid" + "</strong> </ins> </font> <br> </br>";
+            mBody += "";
+            logFile = @filesPath + "\\diskpart.txt";
+            if (File.Exists(logFile))
+            {
+                lstLog.DataSource = File.ReadAllLines(logFile);
+                for (int i = 0; i < lstLog.Items.Count; ++i)
+                {
+                    kicsi = lstLog.Items[i].ToString();
+                    kicsi = kicsi.ToLower();
+                    if (kicsi.Contains("foreign") == true || kicsi.Contains("missing") == true )
+                    {
+                        RaidError = true;
+                        mBody += "<font color = #97492A; size = 2px;> <ins> <strong> " + kicsi + "</strong> </ins> </font> <br> </br>";
+                    }
+                }
+                MailSender();
+            }
         }
 
         private void _SettLoad()
