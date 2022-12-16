@@ -98,12 +98,12 @@ namespace Raid
                         {
                            AvaMem = TesztLST.Items[i].ToString();
                         }
-                }
+                    }
                     if (gyarto == false) 
                     {
-                       this.Text = this.Text + ": " + GepNev + " || " + myIP + "\n";
-                       mSubject = "Cég: " + txtClient.Text + "Dátum:" + DateTime.Now + " || Gépnév: " + GepNev + " || IP: " + myIP;
-                    Gyarto = "Nem azonosítható...";
+                        this.Text = this.Text + ": " + GepNev + " || " + myIP + "\n";
+                        mSubject = "Cég: " + txtClient.Text + "Dátum:" + DateTime.Now + " || Gépnév: " + GepNev + " || IP: " + myIP;
+                        Gyarto = "Nem azonosítható...";
                     }
                 }
                 else
