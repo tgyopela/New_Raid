@@ -134,7 +134,7 @@ namespace Raid
 
         private void _Dell()
         {
-            mBody += "<font color = #97492A; size = 4px;> <ins> <strong> Raid állapot információk : "  + "</strong> </ins> </font> <br> </br>";
+            mBody += "<font color = #97492A; size = 4px;> <ins> <strong> Raid állapot információk (hiba esetén): "  + "</strong> </ins> </font> <br> </br>";
             mBody += "";
             logFile = @filesPath + "\\dell.txt";
             if (File.Exists(logFile))
@@ -167,7 +167,7 @@ namespace Raid
         }
         private void _HP()
         {
-            mBody += "<font color = #97492A; size = 4px;> <ins> <strong>Raid állapot információk : " + "</strong> </ins> </font> <br> </br>";
+            mBody += "<font color = #97492A; size = 4px;> <ins> <strong>Raid állapot információk (hiba esetén): " + "</strong> </ins> </font> <br> </br>";
             mBody += "";
             logFile = @filesPath + "\\hp.txt";
             if (File.Exists(logFile))
