@@ -59,26 +59,6 @@ namespace Raid
             filesPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
             settingsFile = filesPath + "\\Settings.json";
             GepNev = System.Windows.Forms.SystemInformation.ComputerName;
-            //MessageBox.Show()
-
-            //*
-            String myHostName = System.Net.Dns.GetHostName();
-
-            // Find host by name
-            System.Net.IPHostEntry myiphost = System.Net.Dns.GetHostEntry(myHostName);
-            int darabsz = 0;
-            String ipstring = "";
-            foreach (System.Net.IPAddress myipadd in myiphost.AddressList)
-            {
-                darabsz += 1;
-                ipstring = myipadd.ToString();
-
-              
-            }
-            MessageBox.Show(darabsz.ToString());
-            //*
-            myIP = Dns.GetHostByName(GepNev).AddressList[0].ToString();
-            myIP2 = Dns.GetHostByName(GepNev).AddressList[1].ToString();
             string Gyarto = null;
             string PhyMem = null;
             string AvaMem = null;
@@ -105,8 +85,8 @@ namespace Raid
                         if (kicsi.Contains("system manufacturer") == true) // || kicsi.Contains("total physical memory") == true || kicsi.Contains("available physical memory") == true)
                         {
                            gyarto= true;
-                           this.Text = this.Text + ": " + GepNev + " || " + myIP + " || " + TesztLST.Items[i].ToString() + "\n";
-                           mSubject = "Cég: "+ txtClient.Text + " || Dátum: " + DateTime.Now + " ||  Gépnév: " + GepNev + " || Gyártó: " + TesztLST.Items[i].ToString() + " || IP: " +myIP + " - " + myIP2;
+                           this.Text = this.Text + ": " + GepNev + " || "  + TesztLST.Items[i].ToString() + "\n";
+                           mSubject = "Cég: "+ txtClient.Text + " || Dátum: " + DateTime.Now + " ||  Gépnév: " + GepNev + " || Gyártó: " + TesztLST.Items[i].ToString();
                            Gyarto = TesztLST.Items[i].ToString();
 
                         }
@@ -121,15 +101,15 @@ namespace Raid
                     }
                     if (gyarto == false) 
                     {
-                        this.Text = this.Text + ": " + GepNev + " || " + myIP + "\n";
-                        mSubject = "Cég: " + txtClient.Text + "Dátum:" + DateTime.Now + " || Gépnév: " + GepNev + " || IP: " + myIP + " - " + myIP2;
+                        this.Text = this.Text + ": " + GepNev +"\n";
+                        mSubject = "Cég: " + txtClient.Text + "Dátum:" + DateTime.Now + " || Gépnév: " + GepNev;
                         Gyarto = "Nem azonosítható...";
                     }
                 }
                 else
                 {
-                    this.Text = this.Text + ": " + GepNev + " || " + myIP + " - " + myIP2 + "\n";
-                    mSubject = "Dátum:" + DateTime.Now + " || Gépnév: " + GepNev + " || IP: " + myIP + " - " + myIP2 ;
+                    this.Text = this.Text + ": " + GepNev;
+                    mSubject = "Dátum:" + DateTime.Now + " || Gépnév: " + GepNev;
                 }
             mBody += "<font color = #97492A; size = 4px;> <ins> <strong> Alap információk : " + "</strong> </ins> </font> <br> </br>";
             mBody += "";
@@ -137,6 +117,26 @@ namespace Raid
             mBody += "<font color = #97492A; size = 2px;> <ins> <strong> Gyártó: " + Gyarto + "</strong> </ins> </font> <br> </br>";
             mBody += "<font color = #97492A; size = 2px;> <ins> <strong> Fizikai memória: " + PhyMem + "</strong> </ins> </font> <br> </br>";
             mBody += "<font color = #97492A; size = 2px;> <ins> <strong> Elérhető memória: " + AvaMem + "</strong> </ins> </font> <br> </br>";
+
+            //**-
+            //**** IP db meghatározás kell
+            String myHostName = System.Net.Dns.GetHostName();
+            // Find host by name
+            System.Net.IPHostEntry myiphost = System.Net.Dns.GetHostEntry(myHostName);
+            int darabsz = 0;
+            String ipstring = "";
+
+            foreach (System.Net.IPAddress myipadd in myiphost.AddressList)
+            {
+                //darabsz += 1;
+                ipstring = myipadd.ToString();
+                mBody += "<font color = #97492A; size = 2px;> <ins> <strong> IP: " + ipstring + "</strong> </ins> </font> <br> </br>";
+                //myIP += " - ";
+                //myIP += ipstring;
+
+            }
+            //**** IP db meghatározás kell
+            //**-
             mBody += "<font color = #97492A; size = 2px;> <ins> <strong> IP: " + myIP + "</strong> </ins> </font> <br> </br>";
             mBody += "";
             if (DasAuto == "0")
