@@ -28,7 +28,7 @@ namespace Raid
         string GepNev;
         bool RaidError = false;
         string json;
-        //string psAzon;
+        string DasAuto;
         //string fileTorles;
         //long mEret;
         string myIP;
@@ -46,6 +46,7 @@ namespace Raid
             public string Torles { get; set; } //Log fájl törlés
             public string IP { get; set; } //IP
             public string GepNev { get; set; } //Gépnév
+            public string DasAuto { get; set; } //Gépnév
 
         }
         public Form1()
@@ -118,6 +119,11 @@ namespace Raid
             mBody += "<font color = #97492A; size = 2px;> <ins> <strong> Elérhető memória: " + AvaMem + "</strong> </ins> </font> <br> </br>";
             mBody += "<font color = #97492A; size = 2px;> <ins> <strong> IP: " + myIP + "</strong> </ins> </font> <br> </br>";
             mBody += "";
+            if (DasAuto == "0")
+            {
+                if (rbDell.Checked) { _Dell(); }
+                if (rbHp.Checked) { _HP(); }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -223,6 +229,7 @@ namespace Raid
             txtPDW.Text = Settingsed.MPDW;
             txtTo.Text = Settingsed.MTo;
             txtClient.Text = Settingsed.Ceg;
+            DasAuto = Settingsed.DasAuto;
             if (Settingsed.Torles == "igen") { chLgDel.Checked = true; }
             if (Settingsed.Raid == "Dell") { rbDell.Checked = true; }
             if (Settingsed.Raid == "Hp") { rbHp.Checked = true; }
@@ -246,6 +253,7 @@ namespace Raid
             Adatok.MFrom = txtSender.Text;
             Adatok.MTo = txtTo.Text;
             Adatok.Ceg = txtClient.Text;
+            Adatok.DasAuto = DasAuto;
             if (rbDell.Checked== true) { Adatok.Raid = "Dell"; }
             if (rbHp.Checked == true) { Adatok.Raid = "Hp";  }
             if (chDiskpart.Checked == true) { Adatok.DiskParty = "igen"; }
@@ -277,8 +285,8 @@ namespace Raid
         }
         private void MailSender()
         {
-            if (RaidError == true)
-            {
+          //  if (RaidError == true)
+          //  {
                 //****
                 Settings Settingsed = null;
                 using (StreamReader r = new StreamReader(settingsFile))
@@ -321,7 +329,7 @@ namespace Raid
 
                 }
                 //****
-            }
+          //  }
             Application.Exit();
         }
     }
