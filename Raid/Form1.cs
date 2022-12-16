@@ -59,6 +59,24 @@ namespace Raid
             filesPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
             settingsFile = filesPath + "\\Settings.json";
             GepNev = System.Windows.Forms.SystemInformation.ComputerName;
+            //MessageBox.Show()
+
+            //*
+            String myHostName = System.Net.Dns.GetHostName();
+
+            // Find host by name
+            System.Net.IPHostEntry myiphost = System.Net.Dns.GetHostEntry(myHostName);
+            int darabsz = 0;
+            String ipstring = "";
+            foreach (System.Net.IPAddress myipadd in myiphost.AddressList)
+            {
+                darabsz += 1;
+                ipstring = myipadd.ToString();
+
+              
+            }
+            MessageBox.Show(darabsz.ToString());
+            //*
             myIP = Dns.GetHostByName(GepNev).AddressList[0].ToString();
             myIP2 = Dns.GetHostByName(GepNev).AddressList[1].ToString();
             string Gyarto = null;
