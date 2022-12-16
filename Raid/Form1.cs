@@ -137,7 +137,7 @@ namespace Raid
             }
             //**** IP db meghatározás kell
             //**-
-            mBody += "<font color = #97492A; size = 2px;> <ins> <strong> IP: " + myIP + "</strong> </ins> </font> <br> </br>";
+          //  mBody += "<font color = #97492A; size = 2px;> <ins> <strong> IP: " + myIP + "</strong> </ins> </font> <br> </br>";
             mBody += "";
             if (DasAuto == "0")
             {
