@@ -32,6 +32,7 @@ namespace Raid
         //string fileTorles;
         //long mEret;
         string myIP;
+        string myIP2;
         public class Settings
         {//Beállítások
             public string MailServer { get; set; } 
@@ -59,6 +60,7 @@ namespace Raid
             settingsFile = filesPath + "\\Settings.json";
             GepNev = System.Windows.Forms.SystemInformation.ComputerName;
             myIP = Dns.GetHostByName(GepNev).AddressList[0].ToString();
+            myIP2 = Dns.GetHostByName(GepNev).AddressList[1].ToString();
             string Gyarto = null;
             string PhyMem = null;
             string AvaMem = null;
@@ -86,7 +88,7 @@ namespace Raid
                         {
                            gyarto= true;
                            this.Text = this.Text + ": " + GepNev + " || " + myIP + " || " + TesztLST.Items[i].ToString() + "\n";
-                           mSubject = "Cég: "+ txtClient.Text + " || Dátum: " + DateTime.Now + " ||  Gépnév: " + GepNev + " || Gyártó: " + TesztLST.Items[i].ToString() + " || IP: " +myIP ;
+                           mSubject = "Cég: "+ txtClient.Text + " || Dátum: " + DateTime.Now + " ||  Gépnév: " + GepNev + " || Gyártó: " + TesztLST.Items[i].ToString() + " || IP: " +myIP + " - " + myIP2;
                            Gyarto = TesztLST.Items[i].ToString();
 
                         }
@@ -102,14 +104,14 @@ namespace Raid
                     if (gyarto == false) 
                     {
                         this.Text = this.Text + ": " + GepNev + " || " + myIP + "\n";
-                        mSubject = "Cég: " + txtClient.Text + "Dátum:" + DateTime.Now + " || Gépnév: " + GepNev + " || IP: " + myIP;
+                        mSubject = "Cég: " + txtClient.Text + "Dátum:" + DateTime.Now + " || Gépnév: " + GepNev + " || IP: " + myIP + " - " + myIP2;
                         Gyarto = "Nem azonosítható...";
                     }
                 }
                 else
                 {
-                    this.Text = this.Text + ": " + GepNev + " || " + myIP + "\n";
-                    mSubject = "Dátum:" + DateTime.Now + " || Gépnév: " + GepNev + " || IP: " + myIP;
+                    this.Text = this.Text + ": " + GepNev + " || " + myIP + " - " + myIP2 + "\n";
+                    mSubject = "Dátum:" + DateTime.Now + " || Gépnév: " + GepNev + " || IP: " + myIP + " - " + myIP2 ;
                 }
             mBody += "<font color = #97492A; size = 4px;> <ins> <strong> Alap információk : " + "</strong> </ins> </font> <br> </br>";
             mBody += "";
