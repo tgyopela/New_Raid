@@ -326,7 +326,7 @@ namespace Raid
 
                     // add from,to mailaddresses
                     MailAddress from = new MailAddress(Settingsed.MFrom, "Jelentes");
-                    //MailAddress to = new MailAddress("gyongyosi.peter@digitalgroup.hu", "Jelentes");
+                    //MailAddress to = new MailAddress("", "Jelentes");
                     MailMessage myMail = new System.Net.Mail.MailMessage(Settingsed.MFrom, Settingsed.MTo);
 
                     // add ReplyTo
