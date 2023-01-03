@@ -132,7 +132,7 @@ namespace Raid
                 ipstring = myipadd.ToString();
                 mBody += "<font color = #97492A; size = 2px;> <ins> <strong> IP: " + ipstring + "</strong> </ins> </font> <br> </br>";
                 //myIP += " - ";
-                //myIP += ipstring;
+                myIP += " - " + ipstring;
 
             }
             //**** IP db meghatározás kell
@@ -174,7 +174,7 @@ namespace Raid
                         else
                         {
                             RaidError = true;
-                            mBody += "<font color = #97492A; size = 2px;> <ins> <strong> " + kicsi  + "</strong> </ins> </font> <br> </br>";
+                            mBody += "<font color = #FF0000; size = 2px;> <ins> <strong> " + kicsi  + "</strong> </ins> </font> <br> </br>";
                         }
                     }
                 }/*
@@ -203,7 +203,7 @@ namespace Raid
                     if (kicsi.Contains("failed") == true)
                     {
                         RaidError = true;
-                        mBody += "<font color = #97492A; size = 2px;> <ins> <strong> " + kicsi + "</strong> </ins> </font> <br> </br>";
+                        mBody += "<font color = #FF0000; size = 2px;> <ins> <strong> " + kicsi + "</strong> </ins> </font> <br> </br>";
                     }
                 }/*
                 if (RaidError == true)
@@ -228,7 +228,7 @@ namespace Raid
                     if (kicsi.Contains("foreign") == true || kicsi.Contains("missing") == true )
                     {
                         RaidError = true;
-                        mBody += "<font color = #97492A; size = 2px;> <ins> <strong> " + kicsi + "</strong> </ins> </font> <br> </br>";
+                        mBody += "<font color = #FF0000; size = 2px;> <ins> <strong> " + kicsi + "</strong> </ins> </font> <br> </br>";
                     }
                 }
                 MailSender();
