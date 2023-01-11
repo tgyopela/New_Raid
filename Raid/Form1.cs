@@ -143,6 +143,7 @@ namespace Raid
             {
                 if (rbDell.Checked) { _Dell(); }
                 if (rbHp.Checked) { _HP(); }
+                if (rbNone.Checked) { if (chDiskpart.Checked) { _Diskpart(); } else { MailSender(); } }
             }
         }
 
@@ -225,7 +226,7 @@ namespace Raid
                 {
                     kicsi = lstLog.Items[i].ToString();
                     kicsi = kicsi.ToLower();
-                    if (kicsi.Contains("foreign") == true || kicsi.Contains("missing") == true )
+                    if (kicsi.Contains("foreign") == true || kicsi.Contains("missing") == true || kicsi.Contains("falied") == true)
                     {
                         RaidError = true;
                         mBody += "<font color = #FF0000; size = 2px;> <ins> <strong> " + kicsi + "</strong> </ins> </font> <br> </br>";
@@ -253,6 +254,7 @@ namespace Raid
             if (Settingsed.Torles == "igen") { chLgDel.Checked = true; }
             if (Settingsed.Raid == "Dell") { rbDell.Checked = true; }
             if (Settingsed.Raid == "Hp") { rbHp.Checked = true; }
+            if (Settingsed.Raid == "None") { rbNone.Checked = true; }
             if (Settingsed.DiskParty == "igen") { chDiskpart.Checked = true; }
         }
 
@@ -276,6 +278,7 @@ namespace Raid
             Adatok.DasAuto = DasAuto;
             if (rbDell.Checked== true) { Adatok.Raid = "Dell"; }
             if (rbHp.Checked == true) { Adatok.Raid = "Hp";  }
+            if (rbNone.Checked == true) { Adatok.Raid = "None"; }
             if (chDiskpart.Checked == true) { Adatok.DiskParty = "igen"; }
             if (chLgDel.Checked== true) { Adatok.Torles = "igen"; }
             Adatok.IP = myIP;

@@ -50,6 +50,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.rbNone = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -66,12 +67,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.rbNone);
             this.groupBox1.Controls.Add(this.rbHp);
             this.groupBox1.Controls.Add(this.rbDell);
             this.groupBox1.Controls.Add(this.chDiskpart);
             this.groupBox1.Location = new System.Drawing.Point(34, 44);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(175, 106);
+            this.groupBox1.Size = new System.Drawing.Size(175, 172);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = " Raid Típus ";
@@ -101,7 +103,7 @@
             // chDiskpart
             // 
             this.chDiskpart.AutoSize = true;
-            this.chDiskpart.Location = new System.Drawing.Point(7, 76);
+            this.chDiskpart.Location = new System.Drawing.Point(7, 116);
             this.chDiskpart.Name = "chDiskpart";
             this.chDiskpart.Size = new System.Drawing.Size(151, 20);
             this.chDiskpart.TabIndex = 2;
@@ -270,6 +272,17 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Mail küldő:";
             // 
+            // rbNone
+            // 
+            this.rbNone.AutoSize = true;
+            this.rbNone.Location = new System.Drawing.Point(7, 76);
+            this.rbNone.Name = "rbNone";
+            this.rbNone.Size = new System.Drawing.Size(91, 20);
+            this.rbNone.TabIndex = 5;
+            this.rbNone.TabStop = true;
+            this.rbNone.Text = "Egyik sem";
+            this.rbNone.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -315,6 +328,7 @@
         private System.Windows.Forms.TextBox txtClient;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.RadioButton rbNone;
     }
 }
 
